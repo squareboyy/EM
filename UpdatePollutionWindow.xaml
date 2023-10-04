@@ -1,0 +1,29 @@
+﻿<Window x:Class="EM.UpdatePollutionWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EM"
+        mc:Ignorable="d"
+        Title="UpdatePollutionWindow" Height="467" Width="507" Loaded="PollutionWindowLoaded">
+    <Grid>
+        <Label Content="ID" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Width="32" RenderTransformOrigin="0.457,0.507"/>
+        <TextBox x:Name="pollution_id" IsReadOnly="True" HorizontalAlignment="Center" Margin="0,39,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="424" Height="28"/>
+
+        <Label Content="Об'єкт" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,77,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.509,0.575" Height="30" Width="55"/>
+        <ComboBox Name="ComboObjectClass" SelectionChanged="ComboObjectClassChanged" HorizontalAlignment="Center" Margin="0,112,0,0" VerticalAlignment="Top" Width="424" Height="26"/>
+        <TextBox x:Name="object_id" Visibility="Hidden" HorizontalAlignment="Center" Margin="0,107,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="424" Height="27"/>
+
+        <Label Content="Речовина" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,148,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.331,0.506" Height="30" Width="76"/>
+        <ComboBox Name="ComboPollutantClass" SelectionChanged="ComboPollutantClassChanged" HorizontalAlignment="Left" Margin="40,184,0,0" VerticalAlignment="Top" Width="424" Height="26"/>
+        <TextBox x:Name="name_pollutant" Visibility="Hidden" HorizontalAlignment="Center" Margin="0,183,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="424" Height="27"/>
+
+        <Label Content="Усього викидів (т/рік)" FontWeight="Bold" HorizontalAlignment="Left" Margin="182,220,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.509,0.575" Height="30" Width="140"/>
+        <TextBox x:Name="total_emissions" HorizontalAlignment="Center" Margin="0,255,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="424" Height="27"/>
+
+        <Label Content="Звітний рік" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,287,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="pollution_date" HorizontalAlignment="Center" Margin="0,318,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="424" Height="27"/>
+
+        <Button x:Name="UpdateButton" FontWeight="Bold" Content="Оновити дані" Click="UpdateData" HorizontalAlignment="Center" Margin="0,381,0,0" VerticalAlignment="Top" Height="29" Width="424"/>
+    </Grid>
+</Window>

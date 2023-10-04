@@ -1,0 +1,28 @@
+﻿<Window x:Class="EM.UpdatePollutantWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EM"
+        mc:Ignorable="d"
+        Title="UpdatePollutantWindow" Height="467" Width="507" Loaded="PollutantWindowLoaded">
+    <Grid>
+        <Label Content="ID" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Width="32" RenderTransformOrigin="0.457,0.507"/>
+        <TextBox x:Name="pollutant_id" IsReadOnly="True" HorizontalAlignment="Center" Margin="0,39,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="424" Height="28"/>
+        
+        <Label Content="Назва речовини" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,77,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.509,0.575" Height="30" Width="115"/>
+        <TextBox x:Name="name_pollutant" HorizontalAlignment="Center" Margin="0,107,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="424" Height="27"/>
+        
+        <Label Content="ГДК (мг/м^3)" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,148,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.509,0.575" Height="30" Width="112"/>
+        <TextBox x:Name="gdk" HorizontalAlignment="Center" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="424" Height="28" Margin="0,178,0,0"/>
+        
+        <Label Content="Масова витрата (т/рік)" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,220,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.509,0.575" Height="30" Width="150"/>
+        <TextBox x:Name="avg_mass_consumption" HorizontalAlignment="Center" Margin="0,255,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="424" Height="27"/>
+        
+        <Label Content="Клас небезпеки"  FontWeight="Bold" HorizontalAlignment="Center" Margin="0,287,0,0" VerticalAlignment="Top"/>
+        <ComboBox Name="ComboDangerClass" SelectionChanged="ComboDangerClassChanged" HorizontalAlignment="Center" Margin="0,329,0,0" VerticalAlignment="Top" Width="424" Height="26"/>
+        <TextBox x:Name="danger_class" HorizontalAlignment="Left" Margin="329,291,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Visibility="Hidden"/>
+        
+        <Button x:Name="UpdateButton" FontWeight="Bold" Content="Оновити дані" Click="UpdateData" HorizontalAlignment="Center" Margin="0,381,0,0" VerticalAlignment="Top" Height="29" Width="424"/>
+    </Grid>
+</Window>
