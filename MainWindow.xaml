@@ -5,37 +5,159 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EM"
         mc:Ignorable="d"
-        Title="MainWindow" Height="400" Width="850" WindowStartupLocation="CenterScreen" Closing="MyWindowClosing">
+        Title="" Height="400" Width="850" WindowState="Maximized" ResizeMode="CanMinimize" Closing="WindowClosing" Loaded="WindowLoaded">
+
     <Window.Style>
         <Style TargetType="Window">
-            <EventSetter Event="MouseLeftButtonDown" Handler="MainWindowMouseDown" />
+            <EventSetter Event="MouseLeftButtonDown" Handler="WindowMouseDown" />
         </Style>
     </Window.Style>
-    <Grid x:Name="grid1" >
+
+    <Grid x:Name="gridMainWindow" >
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.07*"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Menu Height="25" VerticalAlignment="Top" Grid.Row="0">
-            <MenuItem Header="Add data">
-                <MenuItem Header="Open Excel File">
-                    <MenuItem Header="object" Click="AddObject"></MenuItem>
-                    <MenuItem Header="pollutant" Click="AddPollutant"></MenuItem>
-                    <MenuItem Header="pollution" Click="AddPollution"></MenuItem>
-                </MenuItem>
-            </MenuItem>
-            <MenuItem Header="Select table">
-                <MenuItem Header="object" Click="ObjectClick"></MenuItem>
-                <MenuItem Header="pollutant" Click="PollutantClick"></MenuItem>
-                <MenuItem Header="pollution" Click="PollutionClick"></MenuItem>
-            </MenuItem>
-            <MenuItem Name="updateItem" Header="Update row" IsEnabled="False" Click="UpdateRow"></MenuItem>
-            <MenuItem Name="deleteItem" Header="Delete row" IsEnabled="False" Click="DeleteRow"></MenuItem>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Menu Height="30" FontSize="14" FontWeight="Bold" VerticalAlignment="Top" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
+            <MenuItem Name="pollutionTableItem" Header="Home" Click="PollutionClick"></MenuItem>
+            <MenuItem Name="pollutanTableItem" Header="Pollutans" Click="PollutantClick" Foreground="SlateGray"></MenuItem>
+            <MenuItem Name="objectTableItem" Header="Objects" Click="ObjectClick" Foreground="SlateGray"></MenuItem>
         </Menu>
 
-        <DataGrid x:Name="dataGrid" IsReadOnly="True" AutoGenerateColumns="True" Grid.Row="2" SelectionMode ="Single" SelectionChanged="DataGridSelectionChanged"/>
+        <!--<ContentControl x:Name="ContentControl" Grid.Row="1" Grid.Column="0"/>-->
 
-       
+        <!--Add Data-->
+        <Button x:Name="AddDataButton" Content="Add Data" Click="AddData" Height="45" Width="200" FontWeight="Bold" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}" BorderBrush="Blue" BorderThickness="1" CornerRadius="15">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Background" Value="Blue" />
+                    <Setter Property="Foreground" Value="White" />
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="White" />
+                            <Setter Property="Foreground" Value="Blue" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+
+        <!--Carcinogenic risk-->
+        <CheckBox x:Name="CarcinogenicRiskButton" Content="Carcinogenic risk" Checked="CarcinogenicRisk" Unchecked="PollutionClick" Height="45" Width="200" FontWeight="Bold" Grid.Row="1" Margin="0,60,0,0" HorizontalAlignment="Center" VerticalAlignment="Top">
+            <CheckBox.Template>
+                <ControlTemplate TargetType="CheckBox">
+                    <Border Background="{TemplateBinding Background}" BorderBrush="Blue" BorderThickness="1" CornerRadius="15">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                </ControlTemplate>
+            </CheckBox.Template>
+            <CheckBox.Style>
+                <Style TargetType="CheckBox">
+                    <Setter Property="Background" Value="Blue" />
+                    <Setter Property="Foreground" Value="White" />
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="White" />
+                            <Setter Property="Foreground" Value="Blue" />
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter Property="Background" Value="White" />
+                            <Setter Property="Foreground" Value="Blue" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </CheckBox.Style>
+        </CheckBox> 
+
+        <!--Noncarcinogenic risk-->
+        <CheckBox x:Name="NonCarcinogenicRiskButton" Content="Noncarcinogenic risk" Checked="NonCarcinogenicRisk" Unchecked="PollutionClick" Height="45" Width="200" FontWeight="Bold" Grid.Row="1" Margin="0,110,0,0" HorizontalAlignment="Center" VerticalAlignment="Top">
+            <CheckBox.Template>
+                <ControlTemplate TargetType="CheckBox">
+                    <Border Background="{TemplateBinding Background}" BorderBrush="Blue" BorderThickness="1" CornerRadius="15">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                </ControlTemplate>
+            </CheckBox.Template>
+            <CheckBox.Style>
+                <Style TargetType="CheckBox">
+                    <Setter Property="Background" Value="Blue" />
+                    <Setter Property="Foreground" Value="White" />
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="White" />
+                            <Setter Property="Foreground" Value="Blue" />
+                        </Trigger>
+                        <Trigger x:Name="TriggerNonCarcinogenicRiskButton" Property="IsChecked" Value="True">
+                            <Setter Property="Background" Value="White" />
+                            <Setter Property="Foreground" Value="Blue" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </CheckBox.Style>
+        </CheckBox>
+
+        <!--Update-->
+        <Button Content="Update" Click="UpdateRow" Height="45" Width="200" FontWeight="Bold" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}" BorderBrush="Blue" BorderThickness="1" CornerRadius="15">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Background" Value="Blue" />
+                    <Setter Property="Foreground" Value="White" />
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="White" />
+                            <Setter Property="Foreground" Value="Blue" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+
+        <!--Delete-->
+        <Button Content="Delete" Click="DeleteRow" Height="45" Width="200" FontWeight="Bold" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Top"  Margin="0,65,0,0">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}" BorderBrush="Red" BorderThickness="1" CornerRadius="15">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Background" Value="Red" />
+                    <Setter Property="Foreground" Value="White" />
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="White" />
+                            <Setter Property="Foreground" Value="Red" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+
+        <DataGrid x:Name="dataGrid" IsReadOnly="True" AutoGenerateColumns="True" Grid.Row="1" Grid.Column="1" SelectionMode ="Single"/>
+
     </Grid>
+
 </Window>

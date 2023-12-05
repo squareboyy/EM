@@ -18,7 +18,7 @@ namespace EM.Data
             ConnectionDB();
         }
 
-        public void ConnectionDB()
+        private void ConnectionDB()
         {
             try
             {

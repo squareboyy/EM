@@ -44,8 +44,12 @@ namespace EM.MenuItems
                 }
                 catch
                 {
-                    MessageBox.Show($"Помилка, обрано для оновлення пустий рядок");
+                    MessageBox.Show($"Помилка: цю таблицю не можно змінити");
                 }
+            }
+            else
+            {
+                MessageBox.Show($"Помилка: оберіть рядок для оновлення");
             }
         }
 
@@ -60,9 +64,9 @@ namespace EM.MenuItems
                 {
                     if (!string.IsNullOrWhiteSpace(textBoxes[i].Text))
                     {
-                        if (Regex.IsMatch(textBoxes[i].Text, @"^[\d,\.]+$"))
+                        if (double.TryParse(textBoxes[i].Text, out double value))
                         {
-                            list.Add(textBoxes[i].Text.Replace(",", "."));
+                            list.Add(value);
                         }
                         else
                         {

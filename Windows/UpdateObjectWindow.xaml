@@ -1,24 +1,27 @@
-﻿<Window x:Class="EM.UpdateObjectWindow"
+﻿<Window x:Class="EM.Windows.UpdateObjectWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EM"
         mc:Ignorable="d"
-        Title="UpdateObjectWindow" Height="400" Width="412">
+        Title="UpdateObjectWindow" WindowStartupLocation="CenterScreen" Height="452" Width="412">
     <Grid>
         <Label Content="ID" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Width="32" RenderTransformOrigin="0.457,0.507"/>
         <TextBox x:Name="object_id" IsReadOnly="True" HorizontalAlignment="Center" Margin="0,39,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="356" Height="28"/>
-        
+
         <Label Content="Назва об'єкта" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,77,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.509,0.575" Height="30" Width="92"/>
         <TextBox x:Name="object_name" HorizontalAlignment="Center" Margin="0,107,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="356" Height="27"/>
-        
-        <Label Content="Вид діяльності" FontWeight="Bold" HorizontalAlignment="Left" Margin="141,148,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.509,0.575" Height="30" Width="111"/>
+
+        <Label Content="Вид діяльності" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,148,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.509,0.575" Height="30" Width="112"/>
         <TextBox x:Name="object_activity" HorizontalAlignment="Center" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="356" Height="28" Margin="0,178,0,0"/>
-        
-        <Label Content="Форма власності" FontWeight="Bold" HorizontalAlignment="Left" Margin="141,220,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.509,0.575" Height="30" Width="111"/>
+
+        <Label Content="Форма власності" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,220,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.509,0.575" Height="30" Width="111"/>
         <TextBox x:Name="object_ownership" HorizontalAlignment="Center" Margin="0,255,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="356" Height="27"/>
-        
-        <Button x:Name="UpdateButton" FontWeight="Bold" Content="Оновити дані" Click="UpdateData" HorizontalAlignment="Center" Margin="0,317,0,0" VerticalAlignment="Top" Height="29" Width="356"/>
+
+        <Label Content="Популяція" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,287,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="object_population" HorizontalAlignment="Center" Margin="0,318,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="356" Height="27"/>
+
+        <Button x:Name="UpdateButton" FontWeight="Bold" Content="Оновити дані" Click="UpdateData" HorizontalAlignment="Center" Margin="0,374,0,0" VerticalAlignment="Top" Height="29" Width="356"/>
     </Grid>
 </Window>

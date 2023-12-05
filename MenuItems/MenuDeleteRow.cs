@@ -25,25 +25,22 @@ namespace EM.MenuItems
         private string deleteQuery;
 
         public void DeleteRow()
-        {
-            if (main.dataGrid.SelectedItem != null)
+        {   
+            try
             {
-                try
-                {
-                    conn.connect.Open();
+                conn.connect.Open();
 
-                    DataRowView rowView = (DataRowView)main.dataGrid.SelectedItem;
-                    string? ID = rowView[0].ToString();
-                    action.Delete(conn, deleteQuery, ID);
-                    main.UpdateDataGrid();
+                DataRowView rowView = (DataRowView)main.dataGrid.SelectedItem;
+                string? ID = rowView[0].ToString();
+                action.Delete(conn, deleteQuery, ID);
+                main.UpdateDataGrid();
 
-                    conn.connect.Close();
-                }
-                catch
-                {
-                    MessageBox.Show($"Помилка, цей рядок не можно видалити");
-                }
+                conn.connect.Close();
             }
+            catch
+            {
+                MessageBox.Show($"Помилка: оберіть рядок для видалення");
+            } 
         }
     }
 }

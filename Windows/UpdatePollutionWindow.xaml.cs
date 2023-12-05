@@ -17,7 +17,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace EM
+namespace EM.Windows
 {
     public partial class UpdatePollutionWindow : Window
     {
@@ -33,6 +33,7 @@ namespace EM
                 object_id,
                 name_pollutant,
                 total_emissions,
+                substance_concentration,
                 pollution_date
             };
 
@@ -50,12 +51,12 @@ namespace EM
         private DataView pollutantView;
         public TextBox[] textBoxes;
         private MenuUpdateRow main;
-        private DBDataAccess action = new();
-
+        private DBDataAccess action = new(); 
+        
         private void UpdateData(object sender, RoutedEventArgs e)
         {
             string updateQuery = "UPDATE pollution SET object_id = @value2, pollutant_id = @value3, " +
-                            "total_emissions = @value4, pollution_date = @value5 " +
+                            "total_emissions = @value4, substance_concentration = @value5, pollution_date = @value6 " +
                             "WHERE pollution_id = @value1";
 
             main.UpdateData(textBoxes, updateQuery);

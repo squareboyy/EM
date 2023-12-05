@@ -57,6 +57,7 @@ namespace EM.MenuItems
             DBDataAccess action = new();
             List<object?> list = new();
 
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             using (var package = new ExcelPackage(new FileInfo(filePath)))
             {
                 var worksheet = package.Workbook.Worksheets[0];

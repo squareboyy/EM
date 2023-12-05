@@ -17,7 +17,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace EM
+namespace EM.Windows
 {
     public partial class UpdateObjectWindow : Window
     {
@@ -30,7 +30,8 @@ namespace EM
                 object_id,
                 object_name,
                 object_activity,
-                object_ownership
+                object_ownership,
+                object_population
             };
         }
 
@@ -39,7 +40,7 @@ namespace EM
 
         private void UpdateData(object sender, RoutedEventArgs e)
         {
-            string update = "UPDATE object SET object_name = @value2, activity = @value3, ownership = @value4 " +
+            string update = "UPDATE object SET object_name = @value2, activity = @value3, ownership = @value4, population = @value5 " +
                           "WHERE object_id = @value1";
             main.UpdateData(textBoxes, update);
             Close();

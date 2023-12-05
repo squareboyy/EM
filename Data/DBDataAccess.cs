@@ -80,5 +80,17 @@ namespace EM.Data
             command.Prepare();
             command.ExecuteNonQuery();
         }
+
+        public void StoredProcedure(DBConnection conn, string nameProcedure)
+        {
+            conn.connect.Open();
+
+            MySqlCommand command = new MySqlCommand(nameProcedure, conn.connect);
+            command.CommandType = CommandType.StoredProcedure;
+            command.Prepare();
+            command.ExecuteNonQuery();
+
+            conn.connect.Close();
+        }
     }
 }

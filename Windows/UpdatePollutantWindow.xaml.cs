@@ -13,7 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace EM
+namespace EM.Windows
 {
     public partial class UpdatePollutantWindow : Window
     {
@@ -27,7 +27,9 @@ namespace EM
                 name_pollutant,
                 gdk,
                 avg_mass_consumption,
-                danger_class
+                danger_class,
+                slope_factor,
+                safe_exposure_level
             };
             ComboDangerClass.ItemsSource = dangerClases;
         }
@@ -39,7 +41,8 @@ namespace EM
         private void UpdateData(object sender, RoutedEventArgs e)
         {
             string update = "UPDATE pollutant SET name_pollutant = @value2, gdk = @value3, " +
-                            "avg_mass_consumption = @value4, danger_class = @value5 " +
+                            "avg_mass_consumption = @value4, danger_class = @value5, " +
+                            "slope_factor = @value6, safe_exposure_level = @value7 " +
                             "WHERE pollutant_id = @value1";
             main.UpdateData(textBoxes, update);
             Close();
