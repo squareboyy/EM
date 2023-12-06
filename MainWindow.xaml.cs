@@ -168,6 +168,7 @@ namespace EM
 
             action.StoredProcedure(conn, "CarcinogenicRisk");
             action.StoredProcedure(conn, "NonCarcinogenicRisk");
+            action.StoredProcedure(conn, "Compensation");
 
             PollutionClick(sender, e);
         }
