@@ -93,6 +93,7 @@ namespace EM
 
                     CarcinogenicRiskButton.Visibility = Visibility.Hidden;
                     NonCarcinogenicRiskButton.Visibility = Visibility.Hidden;
+                    CompensationButton.Visibility = Visibility.Hidden;
 
                     break;
 
@@ -103,6 +104,7 @@ namespace EM
 
                     CarcinogenicRiskButton.Visibility = Visibility.Hidden;
                     NonCarcinogenicRiskButton.Visibility = Visibility.Hidden;
+                    CompensationButton.Visibility = Visibility.Hidden;
 
                     break;
 
@@ -113,10 +115,12 @@ namespace EM
 
                     CarcinogenicRiskButton.Visibility = Visibility.Visible;
                     NonCarcinogenicRiskButton.Visibility = Visibility.Visible;
+                    CompensationButton.Visibility = Visibility.Visible;
 
                     AddDataButton.IsEnabled = true;
                     CarcinogenicRiskButton.IsEnabled = true;
                     NonCarcinogenicRiskButton.IsEnabled = true;
+                    CompensationButton.IsEnabled = true;
 
                     break;
             }
@@ -220,58 +224,29 @@ namespace EM
 
         private void CarcinogenicRisk(object sender, RoutedEventArgs e)
         {
-            NonCarcinogenicRiskButton.IsEnabled = false;
             AddDataButton.IsEnabled = false;
+            NonCarcinogenicRiskButton.IsEnabled = false;
+            CompensationButton.IsEnabled = false;
 
-            string select = "SELECT pollution_id, object_name, name_pollutant, total_emissions, substance_concentration, " +
-                            "carcinogenic_risk, characteristic, pollution_date " +
-                            "FROM pollution " +
-                            "JOIN object USING(object_id) " +
-                            "JOIN pollutant USING(pollutant_id) " +
-                            "JOIN carcinogenic_risk_assessment USING(pollution_id) " +
-                            "ORDER BY pollution_id";
-
-            dataGrid.ItemsSource = action.SelectTable(conn, select).DefaultView;
-
-            dataGrid.Columns[0].Header = "ID";
-            dataGrid.Columns[1].Header = "Об'єкт";
-            dataGrid.Columns[2].Header = "Речовина";
-            dataGrid.Columns[3].Header = "Усього викидів (т/рік)";
-            dataGrid.Columns[4].Header = "Концентрація речовини (мг/м^3)";
-            dataGrid.Columns[5].Header = "Канцерогенний ризик";
-            dataGrid.Columns[6].Header = "Рівень ризику";
-            dataGrid.Columns[7].Header = "Звітний рік";
-
-            dataGrid.Columns[1].Width = 220;
-            dataGrid.Columns[4].Width = 130;
+            selectTable.GetCarcinogenicRisk(dataGrid, conn);
         }
 
         private void NonCarcinogenicRisk(object sender, RoutedEventArgs e)
         {
-            CarcinogenicRiskButton.IsEnabled = false;
             AddDataButton.IsEnabled = false;
+            CarcinogenicRiskButton.IsEnabled = false;
+            CompensationButton.IsEnabled = false;
 
-            string select = "SELECT pollution_id, object_name, name_pollutant, total_emissions, substance_concentration, " +
-                            "noncarcinogenic_risk, characteristic, pollution_date " +
-                            "FROM pollution " +
-                            "JOIN object USING(object_id) " +
-                            "JOIN pollutant USING(pollutant_id) " +
-                            "JOIN noncarcinogenic_risk_assessment USING(pollution_id) " +
-                            "ORDER BY pollution_id";
+            selectTable.GetNonCarcinogenicRisk(dataGrid, conn);
+        }
 
-            dataGrid.ItemsSource = action.SelectTable(conn, select).DefaultView;
+        private void CompensationCalculate(object sender, RoutedEventArgs e)
+        {
+            AddDataButton.IsEnabled = false;
+            CarcinogenicRiskButton.IsEnabled = false;
+            NonCarcinogenicRiskButton.IsEnabled = false;
 
-            dataGrid.Columns[0].Header = "ID";
-            dataGrid.Columns[1].Header = "Об'єкт";
-            dataGrid.Columns[2].Header = "Речовина";
-            dataGrid.Columns[3].Header = "Усього викидів (т/рік)";
-            dataGrid.Columns[4].Header = "Концентрація речовини (мг/м^3)";
-            dataGrid.Columns[5].Header = "Неканцерогенний ризик";
-            dataGrid.Columns[6].Header = "Рівень ризику";
-            dataGrid.Columns[7].Header = "Звітний рік";
-
-            dataGrid.Columns[1].Width = 220;
-            dataGrid.Columns[4].Width = 100;
+            selectTable.GetCompensation(dataGrid, conn);
         }
 
         private void DelSelectRow()

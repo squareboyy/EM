@@ -57,7 +57,7 @@
         </Button>
 
         <!--Carcinogenic risk-->
-        <CheckBox x:Name="CarcinogenicRiskButton" Content="Carcinogenic risk" Checked="CarcinogenicRisk" Unchecked="PollutionClick" Height="45" Width="200" FontWeight="Bold" Grid.Row="1" Margin="0,60,0,0" HorizontalAlignment="Center" VerticalAlignment="Top">
+        <CheckBox x:Name="CarcinogenicRiskButton" Content="Carcinogenic risk" Checked="CarcinogenicRisk" Unchecked="PollutionClick" Height="45" Width="200" FontWeight="Bold" Grid.Row="1" Grid.Column="0" Margin="0,60,0,0" HorizontalAlignment="Center" VerticalAlignment="Top">
             <CheckBox.Template>
                 <ControlTemplate TargetType="CheckBox">
                     <Border Background="{TemplateBinding Background}" BorderBrush="Blue" BorderThickness="1" CornerRadius="15">
@@ -81,10 +81,37 @@
                     </Style.Triggers>
                 </Style>
             </CheckBox.Style>
-        </CheckBox> 
+        </CheckBox>
 
         <!--Noncarcinogenic risk-->
-        <CheckBox x:Name="NonCarcinogenicRiskButton" Content="Noncarcinogenic risk" Checked="NonCarcinogenicRisk" Unchecked="PollutionClick" Height="45" Width="200" FontWeight="Bold" Grid.Row="1" Margin="0,110,0,0" HorizontalAlignment="Center" VerticalAlignment="Top">
+        <CheckBox x:Name="NonCarcinogenicRiskButton" Content="Noncarcinogenic risk" Checked="NonCarcinogenicRisk" Unchecked="PollutionClick" Height="45" Width="200" FontWeight="Bold" Grid.Row="1" Grid.Column="0" Margin="0,110,0,0" HorizontalAlignment="Center" VerticalAlignment="Top">
+            <CheckBox.Template>
+                <ControlTemplate TargetType="CheckBox">
+                    <Border Background="{TemplateBinding Background}" BorderBrush="Blue" BorderThickness="1" CornerRadius="15">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                </ControlTemplate>
+            </CheckBox.Template>
+            <CheckBox.Style>
+                <Style TargetType="CheckBox">
+                    <Setter Property="Background" Value="Blue" />
+                    <Setter Property="Foreground" Value="White" />
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="White" />
+                            <Setter Property="Foreground" Value="Blue" />
+                        </Trigger>
+                        <Trigger x:Name="TriggerNonCarcinogenicRiskButton" Property="IsChecked" Value="True">
+                            <Setter Property="Background" Value="White" />
+                            <Setter Property="Foreground" Value="Blue" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </CheckBox.Style>
+        </CheckBox>
+
+        <!--Compensation-->
+        <CheckBox x:Name="CompensationButton" Content="Compensation" Checked="CompensationCalculate" Unchecked="PollutionClick" Height="45" Width="200" FontWeight="Bold" Grid.Row="1" Grid.Column="0" Margin="0,160,0,0" HorizontalAlignment="Center" VerticalAlignment="Top">
             <CheckBox.Template>
                 <ControlTemplate TargetType="CheckBox">
                     <Border Background="{TemplateBinding Background}" BorderBrush="Blue" BorderThickness="1" CornerRadius="15">
