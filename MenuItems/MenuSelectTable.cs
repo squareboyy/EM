@@ -123,7 +123,7 @@ namespace EM.MenuItems
             dataGrid.Columns[1].Header = "Об'єкт";
             dataGrid.Columns[2].Header = "Популяція";
             dataGrid.Columns[3].Header = "Речовина";
-            dataGrid.Columns[4].Header = "Усього викидів(т / рік)";
+            dataGrid.Columns[4].Header = "Усього викидів(т/рік)";
             dataGrid.Columns[5].Header = "Масова витрата (т/рік)";
             dataGrid.Columns[6].Header = "ГДК (мг/м^3)";
             dataGrid.Columns[7].Header = "Звітний рік";
@@ -131,6 +131,22 @@ namespace EM.MenuItems
 
             dataGrid.Columns[1].Width = 220;
             dataGrid.Columns[3].Width = 200;
+        }
+
+        public void GetTaxes(DataGrid dataGrid, DBConnection conn)
+        {
+            dataGrid.ItemsSource = action.SelectTable(conn, "SELECT * FROM taxes_pollution").DefaultView;
+
+            dataGrid.Columns[0].Header = "Об'єкт";
+            dataGrid.Columns[1].Header = "Викиди (т/рік)";
+            dataGrid.Columns[2].Header = "Сума податку за повітря";
+            dataGrid.Columns[3].Header = "Сума податку за воду";
+            dataGrid.Columns[4].Header = "Сума податку за розміщення відходів";
+            dataGrid.Columns[5].Header = "Сума податку за утворення радіоктивних відходів";
+            dataGrid.Columns[6].Header = "Сума податку за тимчасове зберігання радіоктивних відходів";
+            dataGrid.Columns[7].Header = "Рік";
+
+            dataGrid.Columns[0].Width = 220;
         }
     }
 }

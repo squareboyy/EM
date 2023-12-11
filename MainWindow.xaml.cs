@@ -94,6 +94,7 @@ namespace EM
                     CarcinogenicRiskButton.Visibility = Visibility.Hidden;
                     NonCarcinogenicRiskButton.Visibility = Visibility.Hidden;
                     CompensationButton.Visibility = Visibility.Hidden;
+                    TaxesButton.Visibility = Visibility.Hidden;
 
                     break;
 
@@ -105,6 +106,7 @@ namespace EM
                     CarcinogenicRiskButton.Visibility = Visibility.Hidden;
                     NonCarcinogenicRiskButton.Visibility = Visibility.Hidden;
                     CompensationButton.Visibility = Visibility.Hidden;
+                    TaxesButton.Visibility = Visibility.Hidden;
 
                     break;
 
@@ -116,11 +118,13 @@ namespace EM
                     CarcinogenicRiskButton.Visibility = Visibility.Visible;
                     NonCarcinogenicRiskButton.Visibility = Visibility.Visible;
                     CompensationButton.Visibility = Visibility.Visible;
+                    TaxesButton.Visibility = Visibility.Visible;
 
                     AddDataButton.IsEnabled = true;
                     CarcinogenicRiskButton.IsEnabled = true;
                     NonCarcinogenicRiskButton.IsEnabled = true;
                     CompensationButton.IsEnabled = true;
+                    TaxesButton.IsEnabled = true;
 
                     break;
             }
@@ -169,6 +173,7 @@ namespace EM
             action.StoredProcedure(conn, "CarcinogenicRisk");
             action.StoredProcedure(conn, "NonCarcinogenicRisk");
             action.StoredProcedure(conn, "Compensation");
+            action.StoredProcedure(conn, "CalculationTaxAmount");
 
             PollutionClick(sender, e);
         }
@@ -228,6 +233,7 @@ namespace EM
             AddDataButton.IsEnabled = false;
             NonCarcinogenicRiskButton.IsEnabled = false;
             CompensationButton.IsEnabled = false;
+            TaxesButton.IsEnabled = false;
 
             selectTable.GetCarcinogenicRisk(dataGrid, conn);
         }
@@ -237,6 +243,7 @@ namespace EM
             AddDataButton.IsEnabled = false;
             CarcinogenicRiskButton.IsEnabled = false;
             CompensationButton.IsEnabled = false;
+            TaxesButton.IsEnabled = false;
 
             selectTable.GetNonCarcinogenicRisk(dataGrid, conn);
         }
@@ -246,8 +253,19 @@ namespace EM
             AddDataButton.IsEnabled = false;
             CarcinogenicRiskButton.IsEnabled = false;
             NonCarcinogenicRiskButton.IsEnabled = false;
+            TaxesButton.IsEnabled = false;
 
             selectTable.GetCompensation(dataGrid, conn);
+        }
+
+        private void TaxesCalculate(object sender, RoutedEventArgs e)
+        {
+            AddDataButton.IsEnabled = false;
+            CarcinogenicRiskButton.IsEnabled = false;
+            NonCarcinogenicRiskButton.IsEnabled = false;
+            CompensationButton.IsEnabled = false;
+
+            selectTable.GetTaxes(dataGrid, conn);
         }
 
         private void DelSelectRow()
