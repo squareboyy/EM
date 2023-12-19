@@ -148,5 +148,24 @@ namespace EM.MenuItems
 
             dataGrid.Columns[0].Width = 220;
         }
+
+        public void GetEsDamages(DataGrid dataGrid, DBConnection conn)
+        {
+            dataGrid.ItemsSource = action.SelectTable(conn, "SELECT * FROM damages_emergency_situations").DefaultView;
+
+            dataGrid.Columns[0].Header = "Об'єкт";
+            dataGrid.Columns[1].Header = "Hr (грн)";
+            dataGrid.Columns[2].Header = "Mr (грн)";
+            dataGrid.Columns[3].Header = "Mp (грн)";
+            dataGrid.Columns[4].Header = "Rrp (грн)";
+            dataGrid.Columns[5].Header = "Af (грн)";
+            dataGrid.Columns[6].Header = "Bf (грн)";
+            dataGrid.Columns[7].Header = "Zf (грн)";
+            dataGrid.Columns[8].Header = "Загальний обсяг  збитків  від  наслідків НС (грн)";
+            dataGrid.Columns[9].Header = "Рік";
+
+            dataGrid.Columns[0].Width = 340;
+        }
+
     }
 }
